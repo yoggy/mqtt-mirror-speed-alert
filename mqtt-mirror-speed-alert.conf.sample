@@ -1,0 +1,32 @@
+;
+; mqtt-mirror-speed-alert.conf - for supervisord configuration file
+;
+; install
+;     $ sudo apt-get install supervisor
+;     $ pwd
+;       (check your scrpt path...)
+;     $ sudo cp  mqtt-mirror-speed-alert.conf.sample /etc/supervisor/conf.d/mqtt-mirror-speed-alert.conf
+;     $ sudo vi /etc/supervisor/conf.d/mqtt-mirror-speed-alert.conf
+;       (fix path, etc...)
+;     $ sudo supervisorctl update
+;     mqtt-mirror-speed: added process group
+;     $ sudo supervisorctl status
+;     mqtt-mirror-speed-alert      RUNNING    pid 8192, uptime 0:00:30
+;
+; see also
+;     Supervisor: A Process Control System
+;     http://supervisord.org/
+;
+[program:mqtt-mirror-speed-alert]
+command                 = /usr/bin/ruby ./mqtt-mirror-speed-alert.rb config.yaml
+directory               = /home/pi/work/mqtt-mirror-speed-alert/
+user                    = pi
+numprocs                = 1
+autostart               = true
+autorestart             = true
+redirect_stderr         = true
+stdout_logfile          = /home/pi/work/mqtt-mirror-speed-alert/log.txt
+startsecs               = 1
+startretries            = 10
+stdout_logfile_maxbytes = 1MB
+stdout_logfile_backups  = 1

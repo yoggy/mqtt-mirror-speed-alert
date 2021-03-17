@@ -1,0 +1,11 @@
+mqtt_host:      iot.eclipse.org
+mqtt_port:      1883
+mqtt_client_id: mqtt-mirror-speed-alert
+mqtt_use_auth:  false
+mqtt_username:  username
+mqtt_password:  password
+subscribe_topic: topic/net/statics
+publish_topic: topic/net/alert
+threshold_rx_packets: 50000
+threshold_rx_bps: 50000000
+threshold_interval: 60
